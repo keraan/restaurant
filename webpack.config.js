@@ -4,8 +4,8 @@ module.exports = {
   mode: 'development',
   entry: {
     index: './src/index.js',
-    app: './src/app.js',
-    menuTab: './src/menuTab.js'
+    // app: './src/app.js',
+    // menuTab: './src/menuTab.js'
   },
   devtool: 'inline-source-map',
   devServer: {

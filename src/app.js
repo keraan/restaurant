@@ -2,6 +2,9 @@ import { contentContainer, elementFactory } from "."
 import createMenuTab from "./menuTab"
 import createHomePage from "./homeTab"
 import createContactPage from "./contactTab"
+import { contactFade } from "./contactTab"
+import { menuFade } from "./menuTab"
+import { homeFade } from "./homeTab"
 
 const App = () => {
     const navBar = createNavBar()
@@ -15,36 +18,49 @@ function createNavBar() {
     nav.textContent = ''
     contentContainer.appendChild(nav)
     const homeButton = (() => {
-        const button = document.createElement('button')
-        button.classList.add('navBtn')
-        button.textContent = 'Home'
+        const button = elementFactory('button', 'homeBtn', 'navBtn', 'Home')
         nav.appendChild(button)
 
         button.addEventListener('click', () => {
-            clearApp()
-            createHomePage()
+            setTimeout(() => {
+                contactFade()
+                menuFade()
+                }, 0)
+            setTimeout(() => {
+                clearApp()
+                createHomePage()
+                console.log('yo')
+            }, 600)
         })
     })()
     const menuButton = (() => {
-        const button = document.createElement('button')
-        button.classList.add('navBtn')
-        button.textContent = 'Menu'
+        const button = elementFactory('button', 'menuBtn', 'navBtn', 'Menu')
         nav.appendChild(button)
 
         button.addEventListener('click', () => {
-            clearApp()
-            createMenuTab()
+            setTimeout(() => {
+                contactFade()
+                homeFade()
+            }, 0)
+            setTimeout(() => {
+                clearApp()
+                createMenuTab()
+                console.log('yo')
+            }, 600)
         })
     })()
     const contactButton = (() => {
-        const button = document.createElement('button')
-        button.classList.add('navBtn')
-        button.textContent = 'Contact'
+        const button = elementFactory('button', 'contactBtn', 'navBtn', 'Contact')
         nav.appendChild(button)
 
         button.addEventListener('click', () => {
-            clearApp()
-            createContactPage()
+            setTimeout(() => {
+                menuFade()
+                homeFade()
+            }, 0)
+            setTimeout(() => {
+                clearApp()
+                createContactPage()}, 600)
         })
     })()
 }
@@ -55,20 +71,12 @@ function createBodyContainer() {
     return el
 }
 
-// const body = () => {
-//     // const bodyContainer = document.createElement('main')
-//     bodyContainer.id = 'main'
-//     bodyContainer.textContent = 'sakdjhasd'
-//     contentContainer.appendChild(bodyContainer)
-// }
-// bodys = body()
-
-// const body = elementFactory("main", "bodyContainer", 'asdas')
-
-const clearApp = () => {
+function clearApp () {
     const bodyContainer = document.querySelector('#bodyContainer')
     bodyContainer.innerHTML = ''
 }
+
+
 
 
 

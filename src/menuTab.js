@@ -7,6 +7,7 @@ export default function createMenuTab() {
 
     const menuContainer = elementFactory('div', null, 'menuContainer', '')
     bodyContainer.appendChild(menuContainer)
+
     const pizza = menuItemFactory('Peri-Peri Chicken Pizza', 'A flavoursome pairing of seasoned chicken pieces, Italian cherry tomatoes, sliced red onion & baby spinach, topped with a swirl of our addictive peri peri sauce')
     const cola = menuItemFactory('Coca-Cola', "Coca-Cola, or Coke, is a carbonated soft drink manufactured by the Coca-Cola Company.")
     const burger = menuItemFactory('Truffle Burger', 'THE BIG TRUFFLE DELUXE BURGER. Wagyu beef, truffle cheese, oak lettuce, truffle butter, truffle ranch dressing, shaved truffle.')
@@ -14,9 +15,8 @@ export default function createMenuTab() {
     const chips = menuItemFactory('Chips', 'Chips are chips')
 
 
-}
+    navBtnActive()
 
-const menuItem = {
 
 }
 
@@ -24,20 +24,14 @@ const menuItemFactory = (name, description) => {
     const menuContainer = document.querySelector('.menuContainer')
     
     const init = (() => {
-        const item = document.createElement('div')
-        item.classList.add('menuItem')
+        const item = elementFactory('div', null, 'menuItem', null)
         menuContainer.appendChild(item)
 
-        const itemName = document.createElement('div')
-        itemName.classList.add('menuItemName')
-        itemName.textContent = name
+        const itemName = elementFactory('div', null, 'menuItemName', name)
         item.appendChild(itemName)
 
-        const itemDescription = document.createElement('div')
-        itemDescription.textContent = description
+        const itemDescription = elementFactory('div', null, 'menuItemDescription', description)
         item.appendChild(itemDescription)
-        // console.log(menuContainer)
-
     })()
 
     const click = () => {
@@ -46,4 +40,29 @@ const menuItemFactory = (name, description) => {
 
 
     return {name}
+}
+
+function navBtnActive() {
+    const navMenuBtn = document.querySelector('#menuBtn')
+    // const navHomeBtn = document.querySelector('#homeBtn')
+    // const navContactBtn = document.querySelector('#contactBtn')
+    const navBtns = document.querySelectorAll('.navBtn')
+    navBtns.forEach(navBtn => navBtn.classList.remove('active'))
+    navMenuBtn.classList.add('active')
+
+    // const menuContainer = document.querySelector('.menuContainer')
+    // setTimeout(() => {menuContainer.classList.add('fade-in')}, 0)
+    menuFade()
+}
+
+export function menuFade() {
+    const menuBody = document.querySelector('.menuContainer')
+    if (menuBody === null) {return}
+    if (Array.from(menuBody.classList).includes('fade-in')) {
+        setTimeout(() => {menuBody.classList.remove('fade-in')}, 5)
+        console.log('first')
+    } else {
+        setTimeout(() => {menuBody.classList.add('fade-in')}, 5)
+        console.log('second')
+    }
 }
