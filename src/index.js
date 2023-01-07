@@ -1,21 +1,11 @@
-import _ from 'lodash';
-import './style.css';
-import printMe from './print.js';
+import { camelCase } from "lodash";
+import App from "./app";
+import menuTab from "./menuTab";
 
-// function component() {
-//     const element = document.createElement('div');
-//     const btn = document.createElement('button');
+export const contentContainer = document.querySelector('#content')
+export const bodyContainer = document.querySelector('#bodyContainer')
 
-//     // Lodash, now imported by this script
-//     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-//     element.classList.add('hello')
 
-//     btn.innerHTML = 'Click me and check the console!';
-//     btn.onclick = printMe;
-  
-//     element.appendChild(btn);
-  
-//     return element;
-//   }
-  
-//   document.body.appendChild(component());
+console.log(camelCase('hello world you '))
+App()
+
