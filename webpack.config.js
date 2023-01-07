@@ -9,7 +9,7 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    static: './public',
+    static: './dist',
   },
   output: {
     filename: 'main.js',
