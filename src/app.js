@@ -1,13 +1,15 @@
-import { contentContainer, bodyContainer } from "."
-import menuTab from "./menuTab"
+import { contentContainer, elementFactory } from "."
+import createMenuTab from "./menuTab"
+import createHomePage from "./homeTab"
+import createContactPage from "./contactTab"
 
 const App = () => {
-    console.log('app')
-    navBar()
-    body()
-}
+    const navBar = createNavBar()
+    const body = createBodyContainer()
+    const home = createHomePage()
+} 
 
-const navBar = () => {
+function createNavBar() {
     const nav = document.createElement('div')
     nav.id = 'navBar'
     nav.textContent = ''
@@ -20,7 +22,7 @@ const navBar = () => {
 
         button.addEventListener('click', () => {
             clearApp()
-            body()
+            createHomePage()
         })
     })()
     const menuButton = (() => {
@@ -31,7 +33,7 @@ const navBar = () => {
 
         button.addEventListener('click', () => {
             clearApp()
-            menuTab()
+            createMenuTab()
         })
     })()
     const contactButton = (() => {
@@ -39,20 +41,32 @@ const navBar = () => {
         button.classList.add('navBtn')
         button.textContent = 'Contact'
         nav.appendChild(button)
+
+        button.addEventListener('click', () => {
+            clearApp()
+            createContactPage()
+        })
     })()
 }
 
-const body = () => {
-    // const bodyContainer = document.createElement('main')
-    bodyContainer.id = 'main'
-    bodyContainer.textContent = 'sakdjhasd'
-    contentContainer.appendChild(bodyContainer)
+function createBodyContainer() {
+    const el = elementFactory("main", "bodyContainer", "bodyContainer", "")
+    contentContainer.appendChild(el)
+    return el
 }
 
+// const body = () => {
+//     // const bodyContainer = document.createElement('main')
+//     bodyContainer.id = 'main'
+//     bodyContainer.textContent = 'sakdjhasd'
+//     contentContainer.appendChild(bodyContainer)
+// }
 // bodys = body()
 
+// const body = elementFactory("main", "bodyContainer", 'asdas')
+
 const clearApp = () => {
-    // const bodyContainer = document.querySelector('#main')
+    const bodyContainer = document.querySelector('#bodyContainer')
     bodyContainer.innerHTML = ''
 }
 
